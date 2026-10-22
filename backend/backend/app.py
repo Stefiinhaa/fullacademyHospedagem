@@ -6,6 +6,7 @@ import jwt
 import re
 import uuid
 from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, send_from_directory
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.exceptions import HTTPException
@@ -19,9 +20,16 @@ from functools import wraps
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='frontend_build', static_url_path='')
 CORS(app)  # Habilita CORS para o frontend React
 
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_react(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    return send_from_directory(app.static_folder, 'index.html')
 
 class RemoverPrefixoApi:
     """Aceita /api/login, /api/perfil etc. como /login, /perfil...

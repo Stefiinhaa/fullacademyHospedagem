@@ -1,0 +1,539 @@
+/* =========================================================
+   TELA DE ESCOLHA DE SENHA
+   ========================================================= */
+
+.login {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 8vh, 90px) 24px clamp(30px, 5vh, 40px);
+  box-sizing: border-box;
+  background-color: var(--bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: clamp(90px, 10vw, 105px);
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--input-border);
+  border-radius: 999px;
+  background-color: var(--input-bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.login__container {
+  width: min(100%, 520px);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.login__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.login__logo img {
+  display: block;
+  width: clamp(120px, 18vw, 155px);
+  max-width: 100%;
+  height: auto;
+}
+
+.login__text {
+  width: 100%;
+  text-align: center;
+  margin-bottom: clamp(20px, 4vh, 40px);
+}
+
+.login__text h1 {
+  margin: 0;
+  font-size: clamp(24px, 2.8vw, 32px);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.login__text p {
+  margin: 14px 0 0;
+  font-size: clamp(15px, 1.7vw, 18px);
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.login__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.login__form label {
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.login__form input[type="email"],
+.login__form input[type="password"] {
+  width: 100%;
+  height: 54px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  background-color: var(--input-bg);
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--text);
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.login__password-field {
+  position: relative;
+  width: 100%;
+}
+
+.login__password-field input[type="password"],
+.login__password-field input[type="text"] {
+  padding-right: 52px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.password-toggle:hover {
+  color: var(--accent);
+}
+
+.password-toggle svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.login__form input::placeholder {
+  color: var(--text-secondary);
+}
+
+.login__form input[type="email"]:focus,
+.login__form input[type="password"]:focus,
+.login__form input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(237, 28, 38, 0.08);
+}
+
+.password-requirements {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.password-requirements li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.password-requirements li span {
+  width: 18px;
+  flex: 0 0 18px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.password-requirements .is-valid {
+  color: #16803c;
+}
+
+.password-requirements .is-valid span {
+  color: #16803c;
+}
+
+.password-requirements .is-invalid {
+  color: var(--accent);
+}
+
+.password-requirements .is-invalid span {
+  color: var(--accent);
+}
+
+.login__form__buttons {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+
+  gap: 12px;
+
+  margin-top: 30px;
+
+  box-sizing: border-box;
+}
+
+.form-message {
+  margin: 4px 0 0;
+  color: var(--accent);
+  font-size: 14px;
+  text-align: center;
+}
+
+.btn {
+  flex: 1 1 0;
+
+  min-width: 0;
+
+  height: 54px;
+
+  padding: 0 16px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.btn--outline {
+  background-color: var(--bg);
+
+  color: var(--accent);
+
+  border: 1px solid var(--accent);
+}
+
+.btn--outline:hover {
+  background-color: var(--input-bg);
+
+  color: var(--accent);
+}
+
+.btn--solid {
+  background-color: var(--accent);
+
+  color: #fff;
+
+  border: 1px solid var(--accent);
+
+  box-shadow: 0 4px 8px rgba(237, 28, 36, 0.25);
+}
+
+.btn--solid:hover {
+  background-color: var(--accent-hover);
+
+  border-color: var(--accent-hover);
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .login {
+    padding: 90px 40px 50px;
+  }
+
+  .login__container {
+    max-width: 560px;
+  }
+
+  .login__text h1 {
+    font-size: 34px;
+  }
+
+  .login__text p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .login {
+    min-height: 100dvh;
+
+    padding: 90px 20px 35px;
+
+    align-items: center;
+  }
+
+  .theme-toggle {
+    top: 18px;
+    right: 18px;
+
+    width: 100px;
+    height: 40px;
+
+    font-size: 13px;
+  }
+
+  .login__container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .login__logo {
+    margin-bottom: 14px;
+  }
+
+  .login__logo img {
+    width: 135px;
+  }
+
+  .login__text {
+    margin-bottom: 30px;
+  }
+
+  .login__text h1 {
+    font-size: 26px;
+  }
+
+  .login__text p {
+    margin-top: 10px;
+
+    font-size: 16px;
+  }
+
+  .login__form {
+    gap: 8px;
+  }
+
+  .login__form label {
+    font-size: 16px;
+  }
+
+  .login__form input[type="email"],
+  .login__form input[type="password"] {
+    height: 50px;
+
+    font-size: 15px;
+  }
+
+  .login__form__buttons {
+    gap: 10px;
+
+    margin-top: 25px;
+  }
+
+  .btn {
+    height: 50px;
+
+    padding: 0 10px;
+
+    font-size: 15px;
+
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .login {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .theme-toggle {
+    top: 15px;
+    right: 15px;
+
+    width: 94px;
+  }
+
+  .login__logo img {
+    width: 120px;
+  }
+
+  .login__text h1 {
+    font-size: 23px;
+  }
+
+  .login__text p {
+    font-size: 14px;
+  }
+
+  .login__form label {
+    font-size: 15px;
+  }
+
+  .login__form input[type="password"] {
+    height: 48px;
+  }
+
+  .login__form__buttons {
+    gap: 8px;
+  }
+
+  .btn {
+    height: 48px;
+
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .login {
+    min-height: 100dvh;
+
+    padding: 70px 30px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login__container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .login__logo {
+    margin-bottom: 10px;
+  }
+
+  .login__logo img {
+    width: 110px;
+  }
+
+  .login__text {
+    margin-bottom: 20px;
+  }
+
+  .login__text h1 {
+    font-size: 24px;
+  }
+
+  .login__text p {
+    margin-top: 6px;
+
+    font-size: 14px;
+  }
+
+  .login__form input[type="password"] {
+    height: 46px;
+  }
+
+  .login__form__buttons {
+    margin-top: 20px;
+  }
+
+  .btn {
+    height: 46px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) and (orientation: landscape) {
+  .login {
+    padding: 70px 50px 40px;
+  }
+
+  .login__container {
+    max-width: 620px;
+    margin-top: 50px;
+  }
+
+  .login__text {
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .login {
+    padding: 60px 50px;
+  }
+
+  .login__container {
+    max-width: 540px;
+  }
+
+  .login__text h1 {
+    font-size: 34px;
+  }
+
+  .login__text p {
+    font-size: 18px;
+  }
+}
+
+@media (max-height: 650px) {
+  .login {
+    align-items: flex-start;
+
+    padding-top: 70px;
+    padding-bottom: 30px;
+  }
+
+  .login__logo img {
+    width: 110px;
+  }
+
+  .login__text {
+    margin-bottom: 20px;
+  }
+
+  .login__text h1 {
+    font-size: 26px;
+  }
+
+  .login__text p {
+    margin-top: 6px;
+  }
+}

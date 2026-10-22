@@ -1,0 +1,501 @@
+/* ========================================================= SIDEBAR - CONFIGURAÇÃO PRINCIPAL ========================================================= */
+.app-sidebar {
+  --app-sidebar-gap: 12px;
+  --cui-sidebar-width: 14.5rem;
+  z-index: 1100 !important;
+  --cui-sidebar-bg: var(--sidebar-bg);
+  --cui-sidebar-color: var(--sidebar-text);
+  --cui-sidebar-brand-color: var(--sidebar-text);
+  --cui-sidebar-nav-link-color: var(--sidebar-text);
+  --cui-sidebar-nav-link-hover-color: var(--sidebar-text);
+  --cui-sidebar-border-color: transparent;
+  background-color: var(--sidebar-bg) !important;
+  color: var(--sidebar-text) !important;
+  position: fixed !important;
+  top: 8px !important;
+  bottom: 8px !important;
+  left: var(--app-sidebar-gap) !important;
+  margin-left: 0 !important;
+  margin-inline-start: 0 !important;
+  width: var(--cui-sidebar-width) !important;
+  height: calc(100vh - 16px) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  border: 1px solid var(--sidebar-border) !important;
+  border-left: 1px solid var(--sidebar-border) !important;
+  box-shadow: none !important;
+  transition:
+    transform 0.2s ease-in-out,
+    width 0.2s ease-in-out;
+}
+
+/* ========================================================= SIDEBAR ABERTA ========================================================= */
+.app-sidebar:not(.sidebar-narrow) {
+  transform: translateX(0);
+  outline: 1px solid var(--sidebar-border);
+  outline-offset: 1px;
+}
+
+/* ========================================================= SIDEBAR FECHADA ========================================================= */
+.app-sidebar.sidebar-narrow {
+  transform: translateX(calc(-100% - var(--app-sidebar-gap)));
+  border-color: transparent !important;
+  border-left-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ========================================================= CABEÇALHO ========================================================= */
+.app-sidebar .sidebar-header {
+  height: 80px !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  padding: 0 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0;
+}
+
+/* ========================================================= MARCA ========================================================= */
+.app-sidebar .sidebar-brand {
+  display: flex !important;
+  align-items: center !important;
+  min-width: 0;
+  width: 100%;
+}
+
+/* ========================================================= LOGO ========================================================= */
+.sidebar-logo {
+  display: block;
+  width: 58px;
+  max-width: 58px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ========================================================= TEXTO DA MARCA ========================================================= */
+.sidebar-brand-text {
+  color: var(--sidebar-text);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 10px;
+  white-space: nowrap;
+  display: inline;
+}
+
+/* ========================================================= HAMBÚRGUER ========================================================= */
+.sidebar-hamburger-icon {
+  display: none !important;
+  color: #ed1c26 !important;
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ========================================================= NAVEGAÇÃO ========================================================= */
+.app-sidebar .sidebar-nav {
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================================= LINKS ========================================================= */
+.app-sidebar .nav-link {
+  color: var(--sidebar-text) !important;
+  min-height: 42px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* ========================================================= ÍCONES ========================================================= */
+.app-sidebar .nav-icon,
+.app-sidebar .nav-icon svg,
+.app-sidebar .nav-icon-bullet {
+  color: #ed1c26 !important;
+  fill: currentColor !important;
+  flex-shrink: 0;
+}
+
+.app-sidebar .nav-icon {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+/* ========================================================= TEXTO DOS ITENS ========================================================= */
+.app-sidebar .nav-text {
+  display: inline !important;
+  visibility: visible;
+  opacity: 1;
+  white-space: nowrap;
+}
+
+/* ========================================================= HOVER ========================================================= */
+.app-sidebar .nav-link:hover {
+  background-color: var(--sidebar-hover) !important;
+}
+
+.app-sidebar .nav-link:hover .nav-icon {
+  color: #ed1c26 !important;
+}
+
+/* ========================================================= GRUPOS ========================================================= */
+.app-sidebar .nav-group-toggle {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left;
+  white-space: nowrap;
+  min-height: 42px;
+}
+
+.app-sidebar .nav-group-items {
+  overflow: hidden;
+}
+
+.app-sidebar .nav-group-items .nav-link {
+  min-height: 38px;
+}
+
+/* ========================================================= ESPAÇAMENTO ENTRE CONTEÚDO E RODAPÉ ========================================================= */
+.sidebar-spacer {
+  flex: 1 1 auto;
+  min-height: 20px;
+}
+
+/* ========================================================= DESKTOP E NOTEBOOK Acima de 768px ========================================================= */
+@media (min-width: 769px) {
+  /* * Sidebar recolhida: * esconde textos e navegação. */
+  .app-sidebar.sidebar-narrow-unfoldable:not(:hover) .sidebar-nav,
+  .app-sidebar.sidebar-narrow:not(:hover) .sidebar-nav {
+    display: none !important;
+  }
+
+  .app-sidebar.sidebar-narrow-unfoldable:not(:hover) .sidebar-logo,
+  .app-sidebar.sidebar-narrow:not(:hover) .sidebar-logo,
+  .app-sidebar.sidebar-narrow-unfoldable:not(:hover) .sidebar-brand-text,
+  .app-sidebar.sidebar-narrow:not(:hover) .sidebar-brand-text {
+    display: none !important;
+  }
+
+  .app-sidebar.sidebar-narrow-unfoldable:not(:hover) .sidebar-hamburger-icon,
+  .app-sidebar.sidebar-narrow:not(:hover) .sidebar-hamburger-icon {
+    display: block !important;
+  }
+
+  .app-sidebar.sidebar-narrow-unfoldable:not(:hover) .sidebar-header,
+  .app-sidebar.sidebar-narrow:not(:hover) .sidebar-header {
+    justify-content: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .app-sidebar.sidebar-narrow-unfoldable:not(:hover) .sidebar-brand,
+  .app-sidebar.sidebar-narrow:not(:hover) .sidebar-brand {
+    margin: 0 !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* * Quando o mouse passa sobre a sidebar * recolhida, mostra novamente tudo. */
+  .app-sidebar.sidebar-narrow:hover .sidebar-nav {
+    display: flex !important;
+  }
+
+  .app-sidebar.sidebar-narrow:hover .sidebar-logo {
+    display: block !important;
+  }
+
+  .app-sidebar.sidebar-narrow:hover .sidebar-brand-text {
+    display: inline !important;
+  }
+
+  .app-sidebar.sidebar-narrow:hover .sidebar-hamburger-icon {
+    display: none !important;
+  }
+}
+
+/* ========================================================= NOTEBOOKS ========================================================= */
+@media (max-width: 1200px) and (min-width: 993px) {
+  .app-sidebar {
+    --cui-sidebar-width: 13.5rem;
+    width: var(--cui-sidebar-width) !important;
+  }
+
+  .sidebar-logo {
+    width: 54px;
+    max-width: 54px;
+  }
+
+  .sidebar-brand-text {
+    font-size: 1.1rem;
+  }
+
+  .app-sidebar .nav-link {
+    min-height: 40px;
+  }
+}
+
+/* ========================================================= NOTEBOOKS MENORES ========================================================= */
+@media (max-width: 992px) and (min-width: 769px) {
+  .app-sidebar {
+    --cui-sidebar-width: 13rem;
+    width: var(--cui-sidebar-width) !important;
+    border-radius: 14px !important;
+  }
+
+  .app-sidebar .sidebar-header {
+    height: 72px !important;
+  }
+
+  .sidebar-logo {
+    width: 50px;
+    max-width: 50px;
+  }
+
+  .sidebar-brand-text {
+    font-size: 1rem;
+    margin-left: 8px;
+  }
+
+  .app-sidebar .nav-link {
+    min-height: 40px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ========================================================= TABLETS E CELULARES Até 768px ========================================================= */
+@media (max-width: 768px) {
+  /* * A sidebar vira um painel sobre o conteúdo. */
+  .app-sidebar {
+    --cui-sidebar-width: min(14.5rem, calc(100vw - 24px));
+    width: var(--cui-sidebar-width) !important;
+    left: 8px !important;
+    top: 8px !important;
+    bottom: 8px !important;
+    height: calc(100vh - 16px) !important;
+    border-radius: 14px !important;
+    /* * Muito importante: * a sidebar não altera o layout da página. */
+    position: fixed !important;
+  }
+
+  /* * FECHADA */
+  .app-sidebar.sidebar-narrow {
+    transform: translateX(calc(-100% - 16px)) !important;
+    visibility: visible !important;
+    pointer-events: none;
+  }
+
+  /* * ABERTA */
+  .app-sidebar:not(.sidebar-narrow) {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto;
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* * NUNCA esconder a navegação quando * a sidebar estiver aberta. */
+  .app-sidebar:not(.sidebar-narrow) .sidebar-nav {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* * Logo */
+  .app-sidebar:not(.sidebar-narrow) .sidebar-logo {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* * Nome FullAcademy */
+  .app-sidebar:not(.sidebar-narrow) .sidebar-brand-text {
+    display: inline !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* * Hambúrguer interno não aparece * quando a sidebar está aberta. */
+  .app-sidebar:not(.sidebar-narrow) .sidebar-hamburger-icon {
+    display: none !important;
+  }
+
+  /* * Links */
+  .app-sidebar:not(.sidebar-narrow) .nav-link,
+  .app-sidebar:not(.sidebar-narrow) .nav-group-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    color: var(--sidebar-text) !important;
+  }
+
+  /* * Ícones */
+  .app-sidebar:not(.sidebar-narrow) .nav-icon,
+  .app-sidebar:not(.sidebar-narrow) .nav-icon svg {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #ed1c26 !important;
+    fill: currentColor !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* * Textos */
+  .app-sidebar:not(.sidebar-narrow) .nav-text {
+    display: inline !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  /* * Grupo Cadastros */
+  .app-sidebar:not(.sidebar-narrow) .nav-group-items {
+    display: block;
+  }
+
+  /* * Cabeçalho */
+  .app-sidebar:not(.sidebar-narrow) .sidebar-header {
+    height: 68px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 0 14px !important;
+  }
+
+  /* * Logo em tablet */
+  .app-sidebar:not(.sidebar-narrow) .sidebar-logo {
+    width: 50px;
+    max-width: 50px;
+  }
+
+  /* * Texto da marca em tablet */
+  .app-sidebar:not(.sidebar-narrow) .sidebar-brand-text {
+    font-size: 1rem;
+    margin-left: 8px;
+  }
+}
+
+/* ========================================================= CELULARES ========================================================= */
+@media (max-width: 576px) {
+  .app-sidebar {
+    --cui-sidebar-width: min(18rem, calc(100vw - 64px));
+    width: var(--cui-sidebar-width) !important;
+    border-radius: 12px !important;
+  }
+
+  .app-sidebar:not(.sidebar-narrow) .sidebar-header {
+    height: 64px !important;
+  }
+
+  .app-sidebar:not(.sidebar-narrow) .sidebar-logo {
+    width: 46px;
+    max-width: 46px;
+  }
+
+  .app-sidebar:not(.sidebar-narrow) .sidebar-brand-text {
+    font-size: 1rem;
+  }
+
+  .app-sidebar:not(.sidebar-narrow) .nav-link,
+  .app-sidebar:not(.sidebar-narrow) .nav-group-toggle {
+    min-height: 46px !important;
+    font-size: 1rem !important;
+  }
+}
+
+/* ========================================================= CELULARES MUITO PEQUENOS ========================================================= */
+@media (max-width: 380px) {
+  .app-sidebar {
+    --cui-sidebar-width: min(18rem, calc(100vw - 56px));
+    left: 6px !important;
+    width: var(--cui-sidebar-width) !important;
+    top: 6px !important;
+    bottom: 6px !important;
+    height: calc(100vh - 12px) !important;
+  }
+
+  .app-sidebar:not(.sidebar-narrow) .sidebar-brand-text {
+    font-size: 0.95rem;
+  }
+
+  .app-sidebar:not(.sidebar-narrow) .nav-link,
+  .app-sidebar:not(.sidebar-narrow) .nav-group-toggle {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* ========================================================= NOTEBOOK COM POUCA ALTURA ========================================================= */
+@media (max-height: 700px) and (min-width: 769px) {
+  .app-sidebar .sidebar-header {
+    height: 64px !important;
+  }
+
+  .app-sidebar .nav-link {
+    min-height: 36px;
+  }
+
+  .app-sidebar .nav-group-items .nav-link {
+    min-height: 34px;
+  }
+}
+
+/* ========================================================= TELAS MUITO BAIXAS ========================================================= */
+@media (max-height: 560px) {
+  .app-sidebar .sidebar-header {
+    height: 56px !important;
+  }
+
+  .app-sidebar .nav-link {
+    min-height: 34px;
+  }
+
+  .sidebar-logo {
+    width: 42px;
+    max-width: 42px;
+  }
+}
+
+/* ============================================================
+   FUNDO ESCURO ATRÁS DA SIDEBAR (tablet e celular)
+   ============================================================ */
+
+/* DEPOIS */
+.app-sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .app-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: aparecerFundoSidebar 0.2s ease-out;
+  }
+}
+
+@keyframes aparecerFundoSidebar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,128 @@
+:root {
+  --bg: #f4f6f9;
+  --bg-secondary: #f8fafc;
+  --text: #0f172a;
+  --text-secondary: #64748b;
+  --input-bg: #ffffff;
+  --input-border: #e2e8f0;
+  --field-support: #e2e8f0;
+  --accent: #ed1c26;
+  --accent-hover: #d4171e;
+  --border: #e2e8f0;
+  --auth-bg: #ffffff;
+  --auth-bg-secondary: #f8fafc;
+  --auth-text: #0f172a;
+  --auth-text-secondary: #64748b;
+  --auth-input-bg: #ffffff;
+  --auth-input-border: #e2e8f0;
+  --auth-field-support: #e2e8f0;
+  --auth-accent: #ed1c26;
+  --auth-accent-hover: #d4171e;
+  --auth-border: #e2e8f0;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #0f172a;
+  --sidebar-border: #dbe3ef;
+  --sidebar-hover: #fef2f2;
+  --navbar-bg: #ffffff;
+  --navbar-border: #dbe3ef;
+
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font-family: var(--sans);
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+[data-theme="dark"] {
+  --bg: #323232;
+  --bg-secondary: #1a1a1a;
+  --text: #ffffff;
+  --text-secondary: #d1d5db;
+  --input-bg: #1d1d1d;
+  --input-border: #2a2a2a;
+  --field-support: #2a2a2a;
+  --accent: #ed1c26;
+  --accent-hover: #ff3b44;
+  --border: #2a2a2a;
+  --auth-bg: #111111;
+  --auth-bg-secondary: #1a1a1a;
+  --auth-text: #ffffff;
+  --auth-text-secondary: #d1d5db;
+  --auth-input-bg: #1d1d1d;
+  --auth-input-border: #2a2a2a;
+  --auth-field-support: #2a2a2a;
+  --auth-accent: #ed1c26;
+  --auth-accent-hover: #ff3b44;
+  --auth-border: #2a2a2a;
+  --sidebar-bg: #252525;
+  --sidebar-text: #f3f4f6;
+  --sidebar-border: #2f2f2f;
+  --sidebar-hover: #321416;
+  --navbar-bg: #252525;
+  --navbar-border: #2f2f2f;
+
+  color-scheme: dark;
+}
+
+.login {
+  --bg: var(--auth-bg);
+  --bg-secondary: var(--auth-bg-secondary);
+  --text: var(--auth-text);
+  --text-secondary: var(--auth-text-secondary);
+  --input-bg: var(--auth-input-bg);
+  --input-border: var(--auth-input-border);
+  --field-support: var(--auth-field-support);
+  --accent: var(--auth-accent);
+  --accent-hover: var(--auth-accent-hover);
+  --border: var(--auth-border);
+}
+
+* {
+  box-sizing: border-box;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text);
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--text);
+}

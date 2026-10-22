@@ -1,0 +1,696 @@
+.perfil {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.perfil-content {
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin-left: 0;
+  padding: 112px 30px 30px;
+  transition: margin-left 0.15s ease;
+}
+
+.perfil.sidebar-expanded .perfil-content,
+.perfil .app-sidebar:hover ~ .perfil-content {
+  margin-left: calc(var(--cui-sidebar-width, 16rem) + 12px);
+}
+
+/* ---------- Cabeçalho da página ---------- */
+
+.perfil-cabecalho,
+.perfil-formulario {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.perfil-cabecalho {
+  margin-bottom: 24px;
+}
+
+.perfil-cabecalho h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.perfil-cabecalho p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ---------- Estrutura geral ---------- */
+
+.perfil-formulario {
+  display: grid;
+  gap: 18px;
+}
+
+.perfil-card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 22px;
+  border: 1px solid var(--navbar-border);
+  border-radius: 10px;
+  background: var(--navbar-bg);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ---------- Bloco único com os dados do usuário ---------- */
+
+.perfil-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+/* =========================================================
+   FOTO DO PERFIL (AMPLIAÇÃO AO PASSAR O MOUSE)
+   ========================================================= */
+
+.perfil-avatar {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+
+  width: 80px;
+  height: 80px;
+
+  padding: 0;
+
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+
+  background: var(--input-bg);
+  color: var(--text);
+
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  overflow: hidden;
+  font-family: inherit;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* Transição suave para a ampliação do círculo */
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.perfil-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.perfil-avatar.previa {
+  border-style: dashed;
+}
+
+/* Quando existe foto exibida, o cursor vira ponteiro */
+.perfil-avatar-clicavel {
+  cursor: pointer;
+}
+
+/*
+ * EFEITO DE AMPLIAÇÃO:
+ * O círculo inteiro do avatar expande e ganha sombra ao passar o mouse
+ */
+.perfil-avatar-clicavel:hover {
+  transform: scale(2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.perfil-avatar-clicavel:hover img {
+  transform: scale(1.05);
+}
+
+/* Feedback visual ao clicar */
+.perfil-avatar-clicavel:active {
+  transform: scale(0.98);
+}
+
+/* Acessibilidade via teclado */
+.perfil-avatar-clicavel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Área da foto ---------- */
+
+
+.perfil-foto-area-campo {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 140px;
+}
+
+.perfil-foto-area-campo.camera {
+  width: 220px;
+  
+}
+
+/* ---------- Câmera ---------- */
+
+.perfil-camera {
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 1;
+
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+
+  background: #000;
+  object-fit: cover;
+  transform: scaleX(-1);
+
+}
+
+/* ---------- Botões da foto ---------- */
+
+.perfil-botao-foto {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--text-secondary);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.perfil-botao-foto svg {
+  width: 14px;
+  height: 14px;
+}
+
+.perfil-botao-foto:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.perfil-botao-foto:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.perfil-botao-foto.principal {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.perfil-botao-foto.principal:hover:not(:disabled) {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+  color: #fff;
+}
+
+.perfil-botao-foto:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.perfil-botao-foto.secundario {
+  border-color: transparent;
+  color: var(--text-secondary);
+}
+
+.perfil-foto-painel {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+
+}
+
+.perfil-foto-painel p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-align: center;
+}
+
+.perfil-foto-painel .perfil-botao-foto {
+  width: 100%;
+}
+
+.perfil-foto-info {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.perfil-foto-info.erro {
+  color: #dc2626;
+}
+
+.perfil-foto-info.sucesso {
+  color: #15803d;
+}
+
+html[data-theme="dark"] .perfil-foto-info.sucesso {
+  color: #4ade80;
+}
+
+html[data-theme="dark"] .perfil-foto-info.erro {
+  color: #f87171;
+}
+
+/* =========================================================
+   FOTO EM TELA CHEIA
+   ========================================================= */
+
+.perfil-foto-fullscreen {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: 30px;
+
+  background: rgba(0, 0, 0, 0.88);
+  cursor: zoom-out;
+
+  animation: perfil-foto-fullscreen-entrada 0.18s ease-out;
+}
+
+.perfil-foto-fullscreen-imagem {
+  display: block;
+
+  max-width: 92vw;
+  max-height: 90vh;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  cursor: default;
+
+  animation: perfil-foto-fullscreen-zoom 0.2s ease-out;
+}
+
+.perfil-foto-fullscreen-fechar {
+  position: absolute;
+
+  top: 20px;
+  right: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.perfil-foto-fullscreen-fechar:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+}
+
+.perfil-foto-fullscreen-fechar:active {
+  transform: scale(0.95);
+}
+
+.perfil-foto-fullscreen-fechar svg {
+  width: 24px;
+  height: 24px;
+}
+
+.perfil-foto-fullscreen-fechar:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@keyframes perfil-foto-fullscreen-entrada {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes perfil-foto-fullscreen-zoom {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---------- Dados do usuário ---------- */
+
+.perfil-dados {
+  flex: 1;
+  min-width: 0;
+}
+
+.perfil-nome {
+  margin: 4px 0 14px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.perfil-lista {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.perfil-lista div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.perfil-lista dt {
+  font-weight: 700;
+}
+
+.perfil-lista dd {
+  margin: 0;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.perfil-status {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.perfil-status::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.perfil-status.ativo {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.perfil-status.inativo {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* ---------- Alterar senha ---------- */
+
+.perfil-secao-titulo {
+  margin: 10px 0 -6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.perfil-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.senha-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.perfil-grid label {
+  display: grid;
+  gap: 8px;
+
+  color: var(--text);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.perfil-grid input {
+  box-sizing: border-box;
+
+  width: 100%;
+
+  padding: 10px 12px;
+
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+
+  background: var(--input-bg);
+  color: var(--text);
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+
+  outline: none;
+}
+
+.perfil-grid input::placeholder {
+  color: var(--text-secondary);
+}
+
+.perfil-grid input:focus-visible {
+  box-shadow: 0 0 0 3px rgba(237, 28, 38, 0.25);
+}
+
+/* ---------- Requisitos do CampoSenha ---------- */
+
+.requisitos-perfil {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.requisitos-perfil ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}
+
+/* ---------- Botões ---------- */
+
+.perfil-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.perfil-botao {
+  padding: 10px 18px;
+
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+
+  background: var(--accent);
+  color: #fff;
+
+  cursor: pointer;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.perfil-botao:hover:not(:disabled) {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.perfil-botao.secundario {
+  background: transparent;
+  color: var(--accent);
+}
+
+.perfil-botao.secundario:hover:not(:disabled) {
+  background: rgba(237, 28, 38, 0.1);
+  color: var(--accent);
+}
+
+.perfil-botao:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.perfil-botao:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+/* ---------- Mensagens ---------- */
+
+.perfil-feedback {
+  max-width: 1040px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+}
+
+.perfil-feedback.erro {
+  color: #dc2626;
+}
+
+.perfil-feedback.sucesso {
+  color: #15803d;
+}
+
+/* ---------- Tema escuro ---------- */
+
+html[data-theme="dark"] .perfil {
+  background-color: #333333;
+}
+
+html[data-theme="dark"] .perfil-status.ativo {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+html[data-theme="dark"] .perfil-status.inativo {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 960px) {
+  .senha-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .perfil-content {
+    padding: 100px 16px 28px;
+  }
+
+  .perfil-card {
+    padding: 18px;
+  }
+
+  .perfil-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .perfil-lista div {
+    justify-content: center;
+  }
+
+  .senha-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil-acoes {
+    flex-direction: column-reverse;
+  }
+
+  .perfil-botao {
+    width: 100%;
+  }
+
+  .perfil-foto-fullscreen {
+    padding: 15px;
+  }
+
+  .perfil-foto-fullscreen-imagem {
+    max-width: 96vw;
+    max-height: 85vh;
+  }
+
+  .perfil-foto-fullscreen-fechar {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+}
+/* =========================================================
+   BOTÕES CANCELAR / FECHAR SEM CONTORNO DE FOCO
+   (o foco continua neles: Enter = cancelar)
+   ========================================================= */
+
+.perfil-botao-foto.secundario:focus,
+.perfil-botao-foto.secundario:focus-visible,
+.perfil-foto-fullscreen-fechar:focus,
+.perfil-foto-fullscreen-fechar:focus-visible {
+  outline: none;
+}
+
+/* =========================================================
+   FOTO DO PERFIL: TELA CHEIA NO MOUSE, FIXA NO CLIQUE
+   ========================================================= */
+
+/* Sem o zoom de 2x: agora o mouse parado abre a tela cheia */
+.perfil-avatar-clicavel:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.perfil-avatar-clicavel:hover img {
+  transform: none;
+}
+
+/* Foto grande ainda não fixada: mãozinha, dá para clicar */
+.perfil .perfil-foto-fullscreen-imagem {
+  cursor: pointer;
+}
+
+/* Foto fixada pelo clique: anel na cor do tema */
+.perfil .perfil-foto-fullscreen-imagem.fixada {
+  cursor: default;
+  box-shadow:
+    0 0 0 3px var(--accent),
+    0 10px 40px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,343 @@
+.home-alunos {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* =========================================================
+   TEMA ESCURO
+   ========================================================= */
+
+html[data-theme="dark"] .home-alunos,
+html[data-theme="dark"] .home-alunos .home-content {
+  --home-alunos-bg: #333333;
+  background-color: var(--home-alunos-bg) !important;
+}
+
+html[data-theme="dark"] .home-alunos .home-content {
+  background-color: var(--home-alunos-bg, #333333) !important;
+}
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.home-alunos .home-content {
+  min-height: calc(100vh - 112px);
+  box-sizing: border-box;
+
+  background-color: var(--bg);
+
+  padding-top: 112px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+
+  /*
+   * Quando a Sidebar está recolhida,
+   * o conteúdo começa normalmente.
+   */
+  margin-left: 0;
+
+  /*
+   * Permite que a largura acompanhe a Sidebar.
+   */
+  transition:
+    margin-left 0.15s ease,
+    width 0.15s ease;
+}
+
+/* Sidebar aberta */
+.home-alunos.sidebar-expanded .home-content {
+  margin-left: calc(var(--cui-sidebar-width, 16rem) + 12px);
+}
+
+/*
+ * Quando a Sidebar do CoreUI é expandida pelo hover,
+ * o conteúdo também acompanha.
+ */
+.home-alunos .app-sidebar:hover ~ .home-content {
+  margin-left: calc(var(--cui-sidebar-width, 16rem) + 12px);
+}
+
+/* =========================================================
+   INTRODUÇÃO
+   ========================================================= */
+
+.dashboard-intro {
+  margin: 0.2rem 2rem 0 2rem;
+}
+
+.home-alunos .home-content h1 {
+  margin: 0;
+  color: var(--text);
+}
+
+.home-alunos .home-content p {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+/* =========================================================
+   CARD DA TRILHA
+   ========================================================= */
+
+.trilha {
+  /*
+   * O card ocupa o espaço disponível do conteúdo.
+   */
+  width: calc(100% - 4rem);
+  max-width: none;
+
+  box-sizing: border-box;
+
+  margin-top: 1.2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+
+  padding: 1rem;
+
+  background-color: var(--navbar-bg);
+  color: var(--text);
+
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  /*
+   * Evita problemas de largura dentro do Flexbox.
+   */
+  min-width: 0;
+
+  transition:
+    width 0.15s ease,
+    margin 0.15s ease;
+}
+
+/* =========================================================
+   CABEÇALHO DA TRILHA
+   ========================================================= */
+
+.trilha-header {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  gap: 10px;
+}
+
+.trilha-header h5 {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+
+  /* Permite quebrar o texto quando faltar espaço */
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* =========================================================
+   TRÊS PONTINHOS
+   ========================================================= */
+
+.tres-pontinhos {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+
+  user-select: none;
+
+  padding: 0 0.5rem;
+
+  margin-left: auto;
+
+  flex-shrink: 0;
+}
+/* =========================================================
+   INFORMAÇÕES DA TRILHA
+   ========================================================= */
+
+.trilha-info {
+  margin-top: 0.3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  min-width: 0;
+}
+
+.home-alunos .trilha-info .continuar {
+  color: #ed1c26;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-right: 1.5rem;
+
+  flex-shrink: 0;
+}
+
+.home-alunos .trilha-info .continuar a {
+  color: #ed1c26;
+  text-decoration: none;
+}
+
+.home-alunos .trilha-info .continuar svg {
+  color: #ed1c26;
+}
+
+/* =========================================================
+   TÍTULO DA TRILHA
+   ========================================================= */
+
+.trilha h5 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* =========================================================
+   PROFESSOR
+   ========================================================= */
+
+.professor-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 0;
+}
+
+/* =========================================================
+   LINHA
+   ========================================================= */
+
+hr {
+  border: none !important;
+  border-top: 2px solid #ed1c26 !important;
+
+  width: 98% !important;
+  height: 0 !important;
+
+  margin: 1rem 0;
+  padding: 0;
+
+  background: transparent !important;
+}
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
+.table-container {
+  width: 100%;
+  margin-top: 1rem;
+
+  /*
+   * Permite que a tabela se adapte ao card.
+   */
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.home-content table {
+  width: 100%;
+
+  border-collapse: collapse !important;
+
+  margin: 10px 0;
+}
+
+.home-content th,
+.home-content td {
+  padding: 12px 15px;
+
+  text-align: left;
+}
+
+.home-content th {
+  color: var(--text-secondary);
+
+  font-weight: bold;
+
+  border-bottom: 2px solid var(--accent) !important;
+}
+
+.home-content td {
+  border-bottom: 1px solid #ed1c2674;
+}
+
+.home-content .trilha-nome {
+  color: var(--text);
+}
+
+.home-content .inicio {
+  color: var(--text-secondary);
+}
+
+.home-content .fim {
+  color: var(--text-secondary);
+
+  font-weight: bold;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+/*
+ * Quando a tela ficar menor, diminuímos as margens
+ * para o card continuar aproveitando o espaço.
+ */
+@media (max-width: 900px) {
+  .home-alunos .home-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .dashboard-intro {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .trilha {
+    width: calc(100% - 2rem);
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+/*
+ * Telas ainda menores.
+ */
+@media (max-width: 600px) {
+  .home-alunos .home-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .dashboard-intro {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .trilha {
+    width: calc(100% - 1rem);
+
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+
+    padding: 0.8rem;
+  }
+}

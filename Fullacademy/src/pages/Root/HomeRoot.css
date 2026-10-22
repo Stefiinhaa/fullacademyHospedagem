@@ -1,0 +1,148 @@
+.home-root {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.home-root .home-content {
+  min-height: calc(100vh - 112px);
+  box-sizing: border-box;
+  margin-left: 0;
+  transition: margin-left 0.15s ease;
+  padding: 112px 30px 30px;
+}
+
+.home-root.sidebar-expanded .home-content {
+  margin-left: calc(var(--cui-sidebar-width, 16rem) + 12px);
+}
+
+.home-root .app-sidebar:hover ~ .home-content {
+  margin-left: calc(var(--cui-sidebar-width, 16rem) + 12px);
+}
+
+.home-root h1 {
+  margin: 0;
+  color: var(--text);
+}
+
+.home-root p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0 0;
+  color: var(--text-secondary);
+}
+
+.panorama {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+}
+
+.panorama-card {
+  flex: 1;
+  background-color: var(--sidebar-bg);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panorama-card {
+    transition: none;
+    will-change: auto;
+  }
+}
+
+.panorama-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.panorama-card h2 {
+  font-size: 11px;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.panorama-card h3 {
+  font-size: 24px;
+  margin: 0 0 6px;
+}
+
+.panorama-card p {
+  font-size: 12px;
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  background-color: var(--sidebar-bg);
+  border-radius: 8px;
+}
+
+/* forçar largura das colunas e alinhamento entre tabelas */
+.aligned-table {
+  table-layout: fixed;
+}
+.aligned-table th:nth-child(1),
+.aligned-table td:nth-child(1) {
+  width: 25%;
+}
+.aligned-table th:nth-child(2),
+.aligned-table td:nth-child(2) {
+  width: 30%;
+}
+.aligned-table th:nth-child(3),
+.aligned-table td:nth-child(3) {
+  width: 20%;
+}
+.aligned-table th:nth-child(4),
+.aligned-table td:nth-child(4) {
+  width: 12.5%;
+}
+.aligned-table th:nth-child(5),
+.aligned-table td:nth-child(5) {
+  width: 12.5%;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  font-size: 12px;
+}
+
+td {
+  font-size: 11px;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.aguardando {
+  background-color: #ffe7b0;
+  color: #8a5a00;
+}
+
+/* regras com maior especificidade para garantir a borda vermelha */
+.home-root .home-content table th,
+.home-root .home-content table td {
+  border-bottom: 1px solid #ed1c2674;
+}
+
+.atraso {
+  color: #ed1c26;
+}

@@ -1,0 +1,284 @@
+.cadastros-pendentes-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 21px;
+  background-color: var(--accent);
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9998;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cadastros-pendentes-fab:hover {
+  background-color: var(--accent-hover);
+}
+
+.cadastros-pendentes-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.cadastros-pendentes-modal {
+  width: min(560px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.cadastros-pendentes-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.cadastros-pendentes-titulo {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cadastros-pendentes-subtitulo {
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.cadastros-pendentes-botao-fechar {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cadastros-pendentes-botao-fechar:hover {
+  background: var(--field-support);
+  color: var(--text);
+}
+
+.cadastros-pendentes-aviso {
+  margin: 0 0 12px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(237, 28, 38, 0.35);
+  background: rgba(237, 28, 38, 0.1);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.cadastros-pendentes-mensagem {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--field-support);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.cadastros-pendentes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cadastros-pendentes-cartao {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  background: var(--bg);
+}
+
+.cadastros-pendentes-nome {
+  margin: 0 0 8px;
+  font-size: 17px;
+  color: var(--text);
+}
+
+.cadastros-pendentes-detalhe {
+  margin: 4px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.campo-senha-pendente {
+  margin-top: 12px;
+}
+
+.campo-senha-pendente label {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.botoes-cadastro-pendente {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.botoes-cadastro-pendente button {
+  flex: 1;
+  min-width: 0;
+}
+
+.botao-finalizar-cadastro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 19px;
+  background-color: var(--accent);
+  color: #ffffff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.botao-finalizar-cadastro.is-online {
+  background-color: var(--accent);
+}
+
+.botao-finalizar-cadastro.is-online:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+
+.botao-finalizar-cadastro.is-offline {
+  background-color: rgba(237, 28, 38, 0.45);
+}
+
+.botao-finalizar-cadastro--lista {
+  min-width: 116px;
+}
+
+.botao-cancelar-cadastro {
+  height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--accent);
+  border-radius: 21px;
+  background: var(--input-bg);
+  color: var(--accent);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.botao-cancelar-cadastro:hover:not(:disabled) {
+  background: var(--field-support);
+}
+
+.botao-cancelar-cadastro:disabled,
+.botao-finalizar-cadastro:disabled,
+.botao-secundario-cadastro:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cadastros-pendentes-rodape {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.botao-secundario-cadastro {
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botao-secundario-cadastro:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cadastros-pendentes-modal-cancelamento {
+  max-width: 420px;
+  text-align: center;
+}
+
+.cadastros-pendentes-cancelamento-icone {
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  background-color: rgba(237, 28, 38, 0.1);
+}
+
+.cadastros-pendentes-cancelamento-descricao {
+  margin: 12px 0 0;
+  line-height: 1.6;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.cadastros-pendentes-cancelamento-acoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  justify-content: center;
+}
+
+.cadastros-pendentes-cancelamento-acoes button {
+  flex: 1;
+}
+
+@media (max-width: 420px) {
+  .botoes-cadastro-pendente,
+  .cadastros-pendentes-cancelamento-acoes {
+    flex-direction: column;
+  }
+}

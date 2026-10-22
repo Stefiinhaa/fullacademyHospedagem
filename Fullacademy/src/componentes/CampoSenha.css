@@ -1,0 +1,200 @@
+.campo-senha-container {
+  position: relative;
+  width: 100%;
+}
+
+.campo-senha {
+  position: relative;
+  width: 100%;
+}
+
+.campo-senha-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 45px 10px 12px;
+}
+
+.campo-senha-olho {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+  color: #555;
+}
+
+.campo-senha-olho svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- Requisitos da senha ---------- */
+
+.password-requirements {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  width: max-content;
+  max-width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.password-requirements li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.password-requirements li span {
+  font-weight: bold;
+}
+
+.password-requirements .is-valid {
+  color: #16803c;
+}
+
+.password-requirements .is-invalid {
+  color: #ed1c26;
+}
+
+/* ---------- Requisitos no Perfil ---------- */
+
+.requisitos-perfil {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 6px 15px;
+  width: max-content;
+  max-width: 500px;
+}
+
+.requisitos-perfil li {
+  white-space: nowrap;
+}
+
+.campo-senha-container {
+  width: 100%;
+  position: relative;
+}
+
+.campo-senha {
+  width: 100%;
+  position: relative;
+}
+
+.campo-senha-input {
+  width: 100%;
+  height: 42px;
+  box-sizing: border-box;
+  padding: 0 44px 0 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--input-bg);;
+  color: #333;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-senha-input:focus {
+  border-color: #ed1c26;
+  box-shadow: 0 0 0 2px rgba(237, 28, 38, 0.12);
+}
+
+.campo-senha-input::placeholder {
+  color: #999;
+}
+
+.campo-senha-olho {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.campo-senha-olho:hover {
+  color: #ed1c26;
+  background-color: #f5f5f5;
+}
+
+.campo-senha-olho:focus {
+  outline: none;
+}
+
+.campo-senha-olho svg {
+  width: 19px;
+  height: 19px;
+}
+
+.password-requirements {
+  list-style: none;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 6px 0 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background-color: var(--bg-secondary);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.password-requirements li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 3px 0;
+}
+
+.password-requirements li span {
+  width: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.password-requirements .is-valid {
+  color: #16803c;
+}
+
+.password-requirements .is-invalid {
+  color: #ed1c26;
+}

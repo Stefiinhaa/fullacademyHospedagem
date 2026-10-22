@@ -1,0 +1,235 @@
+/* ============================================================
+   FILTRO DE COLUNAS (botão + painel)
+   Todas as classes começam com .filtro-coluna para não
+   interferir em outras telas.
+   ============================================================ */
+
+.filtro-coluna {
+  position: relative;
+  display: inline-flex;
+}
+
+/* ---------- Botão que abre o painel ---------- */
+
+.filtro-coluna-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.filtro-coluna-botao:hover {
+   background-color: var(--field-support);
+  color: var(--accent);
+}
+
+.filtro-coluna-botao.ativo {
+   background-color: var(--field-support);
+  color: var(--accent);
+}
+
+.filtro-coluna-botao:focus-visible,
+.filtro-coluna-seta:focus-visible,
+.filtro-coluna-restaurar:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.filtro-coluna-botao svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------- Painel ---------- */
+
+.filtro-coluna-painel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 3000;
+
+  box-sizing: border-box;
+  width: min(300px, calc(100vw - 24px));
+  padding: 14px;
+
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+
+  animation: filtro-coluna-entrada 0.15s ease-out;
+}
+
+@keyframes filtro-coluna-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filtro-coluna-painel {
+    animation: none;
+  }
+}
+
+.filtro-coluna-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.filtro-coluna-cabecalho h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.filtro-coluna-restaurar {
+  padding: 4px 8px;
+
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.filtro-coluna-restaurar:hover {
+  background-color: var(--field-support);
+}
+
+.filtro-coluna-descricao {
+  margin: 4px 0 10px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ---------- Lista ---------- */
+
+.filtro-coluna-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.filtro-coluna-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+
+  font-size: 13px;
+  color: var(--text);
+}
+
+.filtro-coluna-item.arrastando {
+  opacity: 0.4;
+}
+
+.filtro-coluna-item.sobre {
+  border-color: var(--accent);
+}
+
+.filtro-coluna-item.oculta .filtro-coluna-nome {
+  color: var(--text-secondary);
+}
+
+.filtro-coluna-alca {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  color: var(--text-secondary);
+  cursor: grab;
+}
+
+.filtro-coluna-item:active .filtro-coluna-alca {
+  cursor: grabbing;
+}
+
+.filtro-coluna-item input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.filtro-coluna-item input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.filtro-coluna-nome {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.filtro-coluna-seta {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.filtro-coluna-seta:hover:not(:disabled) {
+  background-color: var(--field-support);
+  color: var(--text);
+}
+
+/* Primeira "subir" e última "descer" ficam invisíveis, mas mantêm o alinhamento */
+.filtro-coluna-seta:disabled {
+  visibility: hidden;
+}
+
+.filtro-coluna-seta svg {
+  width: 12px;
+  height: 12px;
+}

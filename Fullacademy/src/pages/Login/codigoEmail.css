@@ -1,0 +1,441 @@
+.login {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  background-color: var(--bg);
+  position: relative;
+}
+
+.login__container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 105px;
+  height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 999px;
+  background-color: var(--input-bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.login__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.login__logo img {
+  width: 155px;
+  height: auto;
+}
+
+.login__text {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.login__text h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.login__text p {
+  margin: 14px 0 0;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+/* ================================
+   FORMULÁRIO
+================================ */
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  color: var(--text);
+}
+
+.login__form label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ================================
+   TEXTO DE INTRODUÇÃO
+================================ */
+
+.login__form__intro {
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.login__form__label-center {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.form-message {
+  margin: 4px 0 0;
+  color: var(--accent);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ================================
+   INPUTS DO CÓDIGO
+================================ */
+
+.codigo-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.login__form .codigo-input input[type="text"] {
+  width: 48px;
+  height: 56px;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+.login__form .codigo-input input[type="text"]:focus {
+  border-color: var(--accent);
+}
+
+/* ================================
+   BOTÕES
+================================ */
+
+.login__form__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  width: 100%;
+  margin-top: 30px;
+}
+
+.login__form__buttons .btn {
+  /* Tamanho fixo */
+  width: 200px !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
+
+  height: 55px !important;
+  min-height: 55px !important;
+  max-height: 55px !important;
+
+  /* Formato */
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border-radius: 8px !important;
+  box-sizing: border-box;
+
+  /* Texto */
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+
+  /* Posicionamento */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  /* Impede o flex de esticar */
+  flex: none !important;
+
+  cursor: pointer;
+}
+
+/* ================================
+   CONTINUAR
+================================ */
+
+.login__form__buttons .btn--outline {
+  background-color: var(--bg);
+  color: var(--accent);
+
+  border: 2px solid var(--accent);
+}
+
+.login__form__buttons .btn--outline:hover {
+  background-color: var(--input-bg);
+}
+
+/* ================================
+   VOLTAR AO LOGIN
+================================ */
+
+.login__form__buttons .btn--solid {
+  background-color: var(--accent);
+  color: #fff;
+
+  border: 2px solid var(--accent);
+
+  box-shadow: 0 4px 8px rgba(237, 28, 36, 0.25);
+}
+
+.login__form__buttons .btn--solid:hover {
+  background-color: var(--accent-hover);
+}
+
+/* ================================
+   BOTÕES
+================================ */
+
+.login__form__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  width: 100%;
+  margin-top: 30px;
+}
+
+.login__form__buttons .btn {
+  width: 200px !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
+
+  height: 55px !important;
+  min-height: 55px !important;
+  max-height: 55px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border-radius: 8px !important;
+  box-sizing: border-box;
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  flex: none !important;
+  cursor: pointer;
+}
+
+/* ================================
+   CELULAR
+   Até 600px
+================================ */
+
+@media (max-width: 600px) {
+  .login {
+    min-height: 100vh;
+    padding: 80px 20px 30px;
+    box-sizing: border-box;
+  }
+
+  .login__container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .login__form {
+    width: 100%;
+  }
+
+  .login__form__buttons {
+    width: 100% !important;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 25px auto 0 !important;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .login__form__buttons .btn {
+    width: 100% !important;
+    max-width: 350px !important;
+    min-width: 0 !important;
+
+    height: 52px !important;
+    min-height: 52px !important;
+    max-height: 52px !important;
+
+    margin: 0 auto !important;
+    flex: none !important;
+  }
+}
+
+/* ================================
+   CELULAR PEQUENO
+   Até 380px
+================================ */
+
+@media (max-width: 380px) {
+  .login {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .login__form__buttons {
+    width: 100% !important;
+    align-items: center;
+  }
+
+  .login__form__buttons .btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+
+    height: 50px !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+  }
+}
+
+/* ================================
+   TABLET
+   601px até 1024px
+================================ */
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .login {
+    padding: 60px 40px;
+  }
+
+  .login__container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .login__form__buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .login__form__buttons .btn {
+    width: 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+  }
+}
+
+/* ================================
+   NOTEBOOK / DESKTOP
+   Acima de 1024px
+================================ */
+
+@media (min-width: 1025px) {
+  .login {
+    min-height: 100vh;
+    width: 100%;
+
+    padding: 60px 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+  }
+
+  .login__container {
+    width: 100%;
+    max-width: 500px;
+
+    margin: 0 auto;
+  }
+
+  .login__form__buttons {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 14px;
+  }
+
+  .login__form__buttons .btn {
+    width: 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+
+    height: 54px !important;
+    min-height: 54px !important;
+    max-height: 54px !important;
+  }
+
+  .login__logo img {
+    width: 155px;
+  }
+}

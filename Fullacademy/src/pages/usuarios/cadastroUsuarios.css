@@ -1,0 +1,2740 @@
+.cadastro-usuarios {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.cadastro-usuarios-content {
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin-left: 0;
+  padding: 112px 30px 30px;
+  transition: margin-left 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cadastro-usuarios.sidebar-expanded .cadastro-usuarios-content,
+.cadastro-usuarios .app-sidebar:hover ~ .cadastro-usuarios-content {
+  margin-left: calc(var(--cui-sidebar-width, 16rem) + 12px);
+}
+
+/* ---------- Painéis (cadastro e listagem) ---------- */
+
+.painel-cadastro,
+.painel-listagem {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.painel-cadastro h1,
+.painel-listagem h1 {
+  margin: 0 0 24px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* ---------- Botão principal (vermelho, com ícone) ---------- */
+
+.botao-principal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 21px;
+  background-color: var(--accent);
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.botao-principal:hover {
+  background-color: var(--accent-hover);
+}
+
+.botao-principal:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.botao-principal svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---------- Mensagens de estado ---------- */
+
+.mensagem-erro {
+  margin: 12px 0 0;
+  color: #ed1c26;
+  font-size: 14px;
+}
+
+.mensagem-carregando {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ---------- Cabeçalho da listagem ---------- */
+
+.listagem-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.listagem-cabecalho h1 {
+  margin: 0;
+}
+
+/* Busca centralizada entre o título e o botão */
+.busca-listagem {
+  position: relative;
+  flex: 1;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.busca-listagem svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 15px;
+  height: 15px;
+  color: var(--text);
+  pointer-events: none;
+}
+
+.busca-listagem input {
+  box-sizing: border-box;
+  width: 350px;
+  height: 42px;
+  padding: 0 14px 0 40px;
+
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 21px;
+  outline: none;
+}
+
+.busca-listagem input::placeholder {
+  color: var(--text-secondary);
+}
+
+.busca-listagem input:focus {
+  border-color: var(--accent);
+}
+
+/* ---------- Filtros ativos (o que está marcado no modal) ---------- */
+
+.filtros-ativos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: -8px 0 20px;
+}
+
+.filtros-ativos-titulo {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Cada chip: formato de pílula */
+.chip-filtro {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  height: 28px;
+  padding: 0 4px 0 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background-color: var(--field-support);
+
+  font-size: 13px;
+  color: var(--text);
+}
+
+.chip-filtro strong {
+  font-weight: 600;
+}
+
+/* X de remover */
+.chip-filtro button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.chip-filtro button:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.chip-filtro svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* Limpar tudo */
+.limpar-filtros {
+  padding: 0 4px;
+
+  border: 0;
+  background: transparent;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Tabela ---------- */
+
+/*
+ * overflow-x: auto também corta no eixo vertical, então a foto
+ * ampliada (scale 2) era cortada. O padding dá espaço para o zoom
+ * e a margem negativa devolve o layout ao tamanho original.
+ */
+.tabela-usuarios-wrapper {
+  overflow-x: auto;
+}
+
+.tabela-usuarios {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabela-usuarios thead th {
+  text-align: center;
+  padding: 0 50px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.icone-filtro {
+  width: 12px;
+  height: 12px;
+  color: var(--text-secondary);
+}
+
+.botao-ordenar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.botao-ordenar:hover {
+  color: var(--text);
+}
+
+.icone-ordenar {
+  width: 11px;
+  height: 11px;
+  opacity: 0.6;
+}
+
+th[aria-sort="ascending"] .icone-ordenar,
+th[aria-sort="descending"] .icone-ordenar {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.botao-filtro {
+  width: 26px;
+  height: 26px;
+  margin-left: 4px;
+  padding: 0;
+  vertical-align: middle;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.botao-filtro:hover,
+.botao-filtro.ativo {
+  background-color: var(--field-support);
+  color: var(--accent);
+}
+
+.tabela-usuarios tbody td {
+  padding: 14px 12px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.tabela-usuarios tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.selo-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.selo-ativo {
+  background-color: rgba(31, 157, 85, 0.15);
+  color: #1f9d55;
+}
+
+.selo-inativo {
+  background-color: rgba(181, 35, 47, 0.15);
+  color: #e0384a;
+}
+
+.tabela-acoes {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.tabela-acoes button {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.tabela-acoes button + button {
+  margin-left: 10px;
+}
+
+.tabela-acoes button:hover {
+  background-color: var(--field-support);
+}
+
+.tabela-acoes svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Coluna de ações e filtro: só o espaço dos botões, colada na borda */
+.tabela-usuarios .coluna-filtro,
+.tabela-usuarios .tabela-acoes {
+  width: 1%;
+  text-align: right;
+  padding-right: 0;
+}
+
+.coluna-filtro-controles {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.coluna-filtro .filtro-coluna-botao {
+  width: 30px;
+  height: 30px;
+}
+
+/* Filtro do mesmo tamanho dos botões, pra alinhar com a lixeira */
+.botao-filtro {
+  width: 30px;
+  height: 30px;
+  margin-left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Rodapé / paginação ---------- */
+
+.listagem-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.paginacao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.paginacao button {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.paginacao button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.paginacao button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.paginacao .pagina-ativa {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+/* ============================================================
+   MODAL DE CONFIRMAÇÃO DE EXCLUSÃO
+   ============================================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-exclusao {
+  width: 100%;
+  max-width: 430px;
+
+  background-color: var(--bg-secondary);
+  border-radius: 10px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+
+  animation: aparecerModal 0.2s ease-out;
+}
+
+.modal-exclusao-conteudo {
+  padding: 30px;
+  text-align: center;
+}
+
+.modal-exclusao-icone {
+  width: 55px;
+  height: 55px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  background-color: #fde8e9;
+  color: #ed1c26;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-exclusao-icone svg {
+  width: 26px;
+  height: 26px;
+}
+
+.modal-exclusao h2 {
+  margin: 0 0 12px;
+
+  font-size: 21px;
+  font-weight: 600;
+
+  color: var(--text);
+}
+
+.modal-exclusao p {
+  margin: 0 0 8px;
+
+  font-size: 15px;
+  line-height: 1.5;
+
+  color: var(--text-secondary);
+}
+
+.modal-exclusao-aviso {
+  display: block;
+
+  margin-bottom: 25px;
+
+  font-size: 13px;
+
+  color: #888888;
+}
+
+.modal-exclusao-erro {
+  margin: 0 0 20px !important;
+
+  padding: 10px;
+
+  border-radius: 5px;
+
+  background-color: #fde8e9;
+  color: #ed1c26 !important;
+
+  font-size: 13px !important;
+}
+
+.modal-exclusao-acoes {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+}
+
+.modal-botao-cancelar,
+.modal-botao-excluir {
+  min-width: 120px;
+
+  padding: 10px 18px;
+
+  border-radius: 5px;
+
+  border: none;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.modal-botao-cancelar {
+  background-color: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.modal-botao-cancelar:hover:not(:disabled) {
+  background-color: #d5d5d5;
+}
+
+.modal-botao-excluir {
+  background-color: #ed1c26;
+
+  color: #ffffff;
+}
+
+.modal-botao-excluir:hover:not(:disabled) {
+  background-color: #c9151e;
+}
+
+.modal-botao-cancelar:disabled,
+.modal-botao-excluir:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@keyframes aparecerModal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-exclusao-conteudo {
+    padding: 24px 20px;
+  }
+
+  .modal-exclusao-acoes {
+    flex-direction: column-reverse;
+  }
+
+  .modal-botao-cancelar,
+  .modal-botao-excluir {
+    width: 100%;
+  }
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 900px) {
+  .listagem-cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .busca-listagem {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .listagem-rodape {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+/* ============================================================
+   MODAL DE CADASTRO / EDIÇÃO
+   ============================================================ */
+
+.modal-formulario-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.modal-formulario {
+  width: min(600px, 100%);
+  max-height: calc(100vh - 40px);
+
+  overflow-y: auto;
+
+  background: var(--bg);
+  border-radius: 12px;
+}
+
+.modal-formulario-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 6px 24px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-formulario-cabecalho h2 {
+  margin: 0;
+
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.modal-formulario-fechar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+  color: var(--text-secondary);
+
+  cursor: pointer;
+}
+
+.modal-formulario-fechar:hover {
+  background: var(--field-support);
+  color: var(--text);
+}
+
+/* ============================================================
+   FORMULÁRIO (2 colunas)
+   ============================================================ */
+
+.formulario-usuario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
+  padding: 15px;
+}
+
+/* Telas menores: uma coluna só */
+@media (max-width: 900px) {
+  .formulario-usuario {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   CAMPOS
+   ============================================================ */
+
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  
+}
+
+.campo-formulario label,
+.campo-status > label {
+ 
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.campo-formulario input,
+.campo-formulario select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding: 10px 12px;
+
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 7px;
+  outline: none;
+}
+
+.campo-formulario input::placeholder {
+  color: var(--text-secondary);
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus {
+  border-color: var(--accent);
+}
+
+/* ============================================================
+   STATUS - SOMENTE EDIÇÃO
+   ============================================================ */
+
+.campo-status {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.grupo-status {
+  display: flex;
+  gap: 10px;
+}
+
+.botao-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 3px;
+  padding: 9px 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--input-bg);
+  color: var(--text-secondary);
+
+  font: inherit;
+  font-weight:  500;
+  cursor: pointer;
+  opacity: 1;
+  transition:
+    opacity 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Não selecionado: realça ao passar o mouse */
+.botao-status:not(.selecionado):hover {
+  border-color: var(--text-secondary);
+  color: var(--text);
+}
+
+.botao-status.selecionado {
+  opacity: 1;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* Verde = ativo, vermelho = inativo (iguais nos dois temas) */
+.botao-status-ativo.selecionado {
+  background-color: #1f9d55;
+}
+
+.botao-status-inativo.selecionado {
+  background-color: var(--auth-accent);
+}
+
+.bolinha-status {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ============================================================
+   ERRO
+   ============================================================ */
+
+.modal-formulario .mensagem-erro {
+  margin: 0 0 16px;
+  font-size: 14px;
+}
+
+/* ============================================================
+   BOTÕES
+   ============================================================ */
+
+.acoes-formulario {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal-formulario .botao-principal {
+  min-height: 42px;
+  padding: 10px 16px;
+  border-radius: 7px;
+}
+
+.botao-cancelar {
+  min-height: 42px;
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 7px;
+  background: none;
+  color: var(--text-secondary);
+
+  font: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.botao-cancelar:hover {
+  color: var(--text);
+}
+
+.modal-formulario .botao-principal:disabled,
+.botao-cancelar:disabled,
+.modal-formulario-fechar:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   SENHA (CampoSenha dentro do modal)
+   Tudo começa com .formulario-usuario para não mexer
+   no CampoSenha das outras telas (Perfil, recuperar senha...).
+   ============================================================ */
+
+/* Espaço à direita para o ícone do olho não cobrir o texto */
+.formulario-usuario .campo-senha-input {
+  padding-right: 44px;
+  text-overflow: ellipsis;
+}
+
+/* Ícone do olho */
+.formulario-usuario .campo-senha-olho {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.formulario-usuario .campo-senha-olho:hover {
+  color: var(--text);
+}
+
+/* Caixa com os requisitos da senha forte */
+.formulario-usuario .password-requirements {
+  display: grid;
+  gap: 4px;
+
+  margin: 6px 0 0;
+  padding: 10px 12px;
+  list-style: none;
+
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background-color: var(--input-bg);
+
+  font-size: 13px;
+}
+
+.formulario-usuario .password-requirements li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Requisito cumprido: verde */
+.formulario-usuario .password-requirements .is-valid {
+  color: #1f9d55;
+}
+
+/* Requisito faltando: texto do tema e X vermelho */
+.formulario-usuario .password-requirements .is-invalid {
+  color: var(--text-secondary);
+}
+
+.formulario-usuario .password-requirements .is-invalid span {
+  color: #e0384a;
+}
+
+/* ============================================================
+   FOTO NO FORMULÁRIO (CampoFoto dentro do modal)
+   Tudo começa com .campo-foto-formulario para não mexer
+   no visual do CampoFoto na tela de Perfil.
+   ============================================================ */
+
+.campo-foto-formulario {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 3px;
+}
+
+.campo-foto-formulario > label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.campo-foto-formulario .perfil-foto-area {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Com a câmera aberta, o vídeo e os botões ficam um embaixo do outro */
+.campo-foto-formulario .perfil-foto-area.camera {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* O quadrado da foto */
+.campo-foto-formulario .perfil-avatar {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+
+  width: 96px;
+  height: 96px;
+  overflow: hidden;
+
+  border: 1px dashed var(--input-border);
+  border-radius: 12px;
+  background-color: var(--input-bg);
+}
+
+/* Foto nova ainda não salva: borda vermelha */
+.campo-foto-formulario .perfil-avatar.previa {
+  border: 2px solid var(--accent);
+}
+
+.campo-foto-formulario .perfil-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.campo-foto-formulario .perfil-avatar span {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* Botões de opções (enviar, câmera, confirmar...) */
+.campo-foto-formulario .perfil-foto-painel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.campo-foto-formulario .perfil-foto-painel p {
+  width: 100%;
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.campo-foto-formulario .perfil-botao-foto {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  height: 36px;
+  padding: 0 14px;
+
+  border: 1px solid var(--input-border);
+  border-radius: 7px;
+  background-color: var(--input-bg);
+  color: var(--text);
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.campo-foto-formulario .perfil-botao-foto:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.campo-foto-formulario .perfil-botao-foto.principal {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.campo-foto-formulario .perfil-botao-foto.principal:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+  color: #ffffff;
+}
+
+.campo-foto-formulario .perfil-botao-foto.secundario {
+  border-color: transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  text-decoration: underline;
+}
+
+.campo-foto-formulario .perfil-botao-foto:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.campo-foto-formulario .perfil-botao-foto svg {
+  width: 14px;
+  height: 14px;
+}
+
+.campo-foto-formulario .perfil-camera {
+  width: min(320px, 100%);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: #000000;
+}
+
+.campo-foto-formulario .perfil-foto-info {
+  width: 100%;
+  margin: 0;
+  font-size: 13px;
+}
+
+.campo-foto-formulario .perfil-foto-info.erro {
+  color: #ed1c26;
+}
+
+.campo-foto-formulario .perfil-foto-info.sucesso {
+  color: #1f9d55;
+}
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .modal-formulario-overlay {
+    padding: 12px;
+  }
+
+  .modal-formulario {
+    max-height: calc(100vh - 24px);
+  }
+
+  .modal-formulario-cabecalho {
+    padding: 16px 18px;
+  }
+
+  .formulario-usuario {
+    padding: 18px;
+  }
+
+  .acoes-formulario {
+    flex-direction: column;
+  }
+
+  .modal-formulario .botao-principal,
+  .botao-cancelar {
+    width: 100%;
+  }
+
+  .grupo-status {
+    flex-direction: column;
+  }
+
+  .botao-status {
+    width: 100%;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--input-text); /* Cor do texto */
+  -webkit-box-shadow: 0 0 0px 1000px var(--input-bg) inset; /* Substitui #2a2d32 pela cor de fundo pretendida */
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ============================================================
+   MODAL DE FILTRO
+   ============================================================ */
+
+/* Fundo escuro que cobre a tela inteira */
+.modal-filtro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* A caixa do modal */
+.modal-filtro {
+  width: min(420px, 100%);
+  max-height: min(560px, calc(100vh - 40px));
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+
+  overflow: hidden;
+  animation: aparecerModal 0.2s ease-out;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.modal-filtro-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  padding: 18px 18px 12px;
+}
+
+.modal-filtro-titulos {
+  flex: 1;
+  min-width: 0;
+}
+
+.modal-filtro-titulos h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.modal-filtro-subtitulo {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+
+  margin: 2px 0 0;
+  font-size: 13px;
+}
+
+.modal-filtro-subtitulo strong {
+  color: var(--text);
+  border-bottom: 2px solid var(--text);
+}
+
+.modal-filtro-subtitulo span {
+  color: var(--text-secondary);
+}
+
+/* Botões só com ícone: voltar e fechar */
+.modal-filtro-icone {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+
+  cursor: pointer;
+}
+
+/* O X de fechar fica vermelho, como no protótipo */
+.modal-filtro-icone:last-child {
+  color: var(--accent);
+}
+
+.modal-filtro-icone:hover {
+  background-color: var(--field-support);
+}
+
+.modal-filtro-icone svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- Campo de busca (tela 2) ---------- */
+
+.modal-filtro-busca {
+  position: relative;
+  margin: 0 18px 8px;
+}
+
+.modal-filtro-busca svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  pointer-events: none;
+}
+
+.modal-filtro-busca input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  padding: 0 12px 0 34px;
+
+  font: inherit;
+  font-size: 13px;
+  color: var(--text);
+
+  background-color: var(--input-bg);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  outline: none;
+}
+
+.modal-filtro-busca input:focus {
+  border-color: var(--accent);
+}
+
+/* ---------- Lista (categorias ou valores) ---------- */
+
+.modal-filtro-lista {
+  flex: 1;
+  overflow-y: auto;
+
+  margin: 0;
+  padding: 0 18px 12px;
+  list-style: none;
+}
+
+.modal-filtro-lista li {
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-filtro-lista li:last-child {
+  border-bottom: none;
+}
+
+/* Tela 1: cada categoria */
+.modal-filtro-categoria {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 12px 4px;
+
+  border: 0;
+  background: transparent;
+  color: var(--text);
+
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.modal-filtro-categoria:hover {
+  color: var(--accent);
+}
+
+.modal-filtro-categoria svg {
+  width: 12px;
+  height: 12px;
+  color: var(--text-secondary);
+}
+
+/* Bolinha com a quantidade marcada */
+.modal-filtro-contador {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  padding: 0 5px;
+
+  border-radius: 9px;
+  background-color: var(--accent);
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Tela 2: cada valor com checkbox */
+.modal-filtro-opcao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 9px 4px;
+
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.modal-filtro-opcao:hover {
+  color: var(--accent);
+}
+
+.modal-filtro-opcao input {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.modal-filtro-vazio {
+  padding: 16px 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 480px) {
+  .modal-filtro-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-filtro {
+    width: 100%;
+    max-height: 85vh;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+/* ============================================================
+   FOTO DOS USUÁRIOS NA TABELA (ZOOM AO PASSAR O MOUSE)
+   ============================================================ */
+
+/* ============================================================
+   FOTO DOS USUÁRIOS NA TABELA (ZOOM AO PASSAR O MOUSE)
+   ============================================================ */
+
+.coluna-foto {
+  width: 80px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.foto-usuario-tabela {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.foto-usuario-tabela-botao {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 46px;
+  height: 46px;
+  padding: 0;
+
+  border: 2px solid var(--accent, #5a5383);
+  border-radius: 50%;
+
+  background: var(--input-bg, #f3f4f6);
+  color: var(--text, #1f2937);
+
+  overflow: hidden;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    border-color 0.25s ease;
+}
+
+.foto-usuario-tabela-botao img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.foto-usuario-tabela-botao:active {
+  transform: scale(0.96);
+}
+
+.foto-usuario-tabela-botao:focus-visible {
+  outline: 2px solid var(--accent, #5a5383);
+  outline-offset: 3px;
+}
+
+.foto-usuario-tabela-botao-sem-foto {
+  background: var(--accent, #5a5383);
+  border-color: var(--accent, #5a5383);
+}
+
+.foto-usuario-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #5a5383;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Foto ampliada: fica no <body> (portal), acima de tudo */
+.foto-zoom-flutuante {
+  position: fixed;
+  z-index: 2147483647;
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--accent, #5a5383);
+  background: var(--input-bg, #f3f4f6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+
+  pointer-events: none;
+  animation: foto-zoom-entrada 0.15s ease-out;
+}
+
+.foto-zoom-flutuante img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.foto-zoom-flutuante .foto-usuario-placeholder {
+  font-size: 56px;
+}
+
+@keyframes foto-zoom-entrada {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ============================================================
+   FOTO EM TELA CHEIA
+   ============================================================ */
+
+.perfil-foto-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.88);
+  cursor: zoom-out;
+  animation: perfil-foto-fullscreen-entrada 0.18s ease-out;
+}
+
+.perfil-foto-fullscreen-imagem {
+  display: block;
+  max-width: 92vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  animation: perfil-foto-fullscreen-zoom 0.2s ease-out;
+}
+
+.perfil-foto-fullscreen-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(70vw, 420px);
+  height: min(70vw, 420px);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #5a5383, #7c73a9);
+  color: #ffffff;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  animation: perfil-foto-fullscreen-zoom 0.2s ease-out;
+}
+
+.perfil-foto-fullscreen-fechar {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.perfil-foto-fullscreen-fechar:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+}
+
+.perfil-foto-fullscreen-fechar:active {
+  transform: scale(0.95);
+}
+
+.perfil-foto-fullscreen-fechar svg {
+  width: 24px;
+  height: 24px;
+}
+
+.perfil-foto-fullscreen-fechar:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@keyframes perfil-foto-fullscreen-entrada {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes perfil-foto-fullscreen-zoom {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.tabela-vazia {
+  text-align: center;
+  padding: 30px;
+}
+
+/* Container das ações do cabeçalho */
+.acoes-cabecalho-listagem {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Botão de seleção (transparente e sem bordas) */
+.botao-ativar-selecao {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.15s ease-in-out;
+}
+
+.botao-ativar-selecao:hover {
+  transform: scale(1.08);
+}
+
+/* Ícone de seleção - estado padrão (desmarcado) */
+.botao-ativar-selecao .icone-botao-selecao {
+  color: var(--accent);
+  transition: color 0.2s ease-in-out;
+}
+
+.botao-ativar-selecao:hover .icone-botao-selecao {
+  color: var(--accent-hover);
+}
+
+/* Cor do ícone quando o modo de seleção está ativo */
+.botao-ativar-selecao.selecao-ativa .icone-botao-selecao {
+  color: var(--accent);
+}
+
+/* Botão de exclusão em massa */
+.botao-excluir-massa {
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.botao-excluir-massa:hover {
+  background-color: var(--accent-hover);
+}
+
+.acoes-colunas-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.botao-configurar-colunas {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.botao-configurar-colunas:hover,
+.botao-configurar-colunas.ativo {
+  background: var(--surface-1);
+  border-color: #ed1c26;
+  color: var(--text-primary);
+}
+
+.botao-configurar-colunas span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.popover-filtro-colunas {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1200;
+}
+
+/* ============================================================
+   SELEÇÃO EM MASSA
+   ============================================================ */
+
+.grupo-selecao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.botao-ativar-selecao {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+}
+
+.botao-ativar-selecao:hover,
+.botao-ativar-selecao.selecao-ativa {
+  background-color: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.grupo-selecao .coluna-filtro-controles {
+  gap: 10px;
+}
+
+.grupo-selecao .coluna-filtro-controles .botao-filtro,
+.grupo-selecao .coluna-filtro-controles .filtro-coluna-botao {
+  width: 38px;
+  height: 38px;
+  margin-left: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0;
+  transition:
+    transform 0.15s ease-in-out,
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.grupo-selecao .coluna-filtro-controles .botao-filtro:hover,
+.grupo-selecao .coluna-filtro-controles .filtro-coluna-botao:hover,
+.grupo-selecao .coluna-filtro-controles .botao-filtro.ativo,
+.grupo-selecao .coluna-filtro-controles .filtro-coluna-botao.ativo {
+  transform: scale(1.08);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  background-color: var(--field-support);
+  color: var(--accent);
+}
+
+/* Opção "Selecionar todos" */
+.opcao-selecionar-todos {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  animation: aparecerModal 0.15s ease-out;
+}
+
+.opcao-selecionar-todos:hover {
+  background-color: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+/* Checkbox vermelho (tabela + "Selecionar todos") */
+.tabela-usuarios input[type="checkbox"],
+.opcao-selecionar-todos input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  background-color: transparent;
+  display: inline-grid;
+  place-content: center;
+  vertical-align: middle;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.tabela-usuarios input[type="checkbox"]:hover,
+.opcao-selecionar-todos input[type="checkbox"]:hover {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.tabela-usuarios input[type="checkbox"]:checked,
+.tabela-usuarios input[type="checkbox"]:indeterminate,
+.opcao-selecionar-todos input[type="checkbox"]:checked,
+.opcao-selecionar-todos input[type="checkbox"]:indeterminate {
+  background-color: var(--accent);
+}
+
+/* Visto (✓) */
+.tabela-usuarios input[type="checkbox"]:checked::after,
+.opcao-selecionar-todos input[type="checkbox"]:checked::after {
+  content: "";
+  width: 9px;
+  height: 5px;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+/* Traço (alguns selecionados) */
+.tabela-usuarios input[type="checkbox"]:indeterminate::after,
+.opcao-selecionar-todos input[type="checkbox"]:indeterminate::after {
+  content: "";
+  width: 9px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #ffffff;
+}
+
+/* Linha clicável no modo de seleção */
+.tabela-usuarios tbody tr.linha-selecionavel {
+  cursor: pointer;
+}
+
+.tabela-usuarios tbody tr.linha-selecionavel td {
+  transition: background-color 0.15s ease;
+}
+
+.tabela-usuarios tbody tr.linha-selecionavel:hover td {
+  background-color: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.tabela-usuarios tbody tr.linha-selecionada td,
+.tabela-usuarios tbody tr.linha-selecionada:hover td {
+  background-color: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+/* Coluna do checkbox estreita (o thead tinha padding de 50px) */
+.tabela-usuarios thead th.coluna-checkbox,
+.tabela-usuarios tbody td.coluna-checkbox {
+  width: 1%;
+  padding-left: 16px;
+  padding-right: 8px;
+}
+
+/* ============================================================
+   RESPONSIVIDADE DA TELA DE USUÁRIOS
+   ============================================================ */
+
+/* Deixa o painel encolher: sem isso, a tabela larga
+   empurra a página inteira para o lado */
+.painel-listagem {
+  min-width: 0;
+}
+
+/* ---------- Notebook (até 1200px) ---------- */
+@media (max-width: 1200px) {
+  .tabela-usuarios thead th {
+    padding: 0 16px 12px;
+  }
+}
+
+/* ---------- Tablet (até 900px) ---------- */
+@media (max-width: 900px) {
+  .cadastro-usuarios-content {
+    padding: 96px 16px 20px;
+  }
+
+  .cadastro-usuarios.sidebar-expanded .cadastro-usuarios-content,
+  .cadastro-usuarios .app-sidebar:hover ~ .cadastro-usuarios-content {
+    margin-left: 0;
+  }
+
+  .painel-listagem {
+    padding: 20px;
+  }
+
+  .acoes-cabecalho-listagem {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .acoes-cabecalho-listagem .botao-principal {
+    margin-left: auto;
+  }
+}
+
+/* ---------- Celular (até 700px): tabela com rolagem lateral ---------- */
+@media (max-width: 700px) {
+  .painel-listagem {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .painel-listagem h1 {
+    font-size: 21px;
+  }
+
+  /* A caixa em volta da tabela rola para o lado */
+  .tabela-usuarios-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+  }
+
+  .tabela-usuarios-wrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .tabela-usuarios-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 3px;
+  }
+
+  /* A tabela não encolhe abaixo de 720px */
+  .tabela-usuarios {
+    min-width: 720px;
+  }
+
+  /* Textos não quebram linha: cada linha fica com uma altura só */
+  .tabela-usuarios th,
+  .tabela-usuarios td {
+    white-space: nowrap;
+  }
+
+  .tabela-usuarios tbody td {
+    padding: 12px 10px;
+  }
+}
+
+/* ---------- Celular pequeno (até 480px) ---------- */
+@media (max-width: 480px) {
+  .cadastro-usuarios-content {
+    padding: 88px 10px 16px;
+  }
+
+  .acoes-cabecalho-listagem .botao-principal,
+  .botao-excluir-massa {
+    flex: 1 1 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .grupo-selecao {
+    flex: 1 1 100%;
+  }
+
+  .opcao-selecionar-todos {
+    flex: 1;
+    justify-content: center;
+  }
+}
+/* ============================================================
+   LISTAGEM OCUPANDO A TELA INTEIRA (estilo FullEduca)
+   Fica no FINAL do arquivo de propósito: sobrescreve as regras acima.
+   ============================================================ */
+
+/* A página tem a altura da tela; quem rola é a tabela */
+.cadastro-usuarios-content {
+  height: 100vh;
+  min-height: 0;
+  padding: 76px 12px 12px;
+  gap: 0;
+}
+
+.painel-listagem {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+/* ---------- Barra superior compacta ---------- */
+
+.listagem-cabecalho {
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.painel-listagem h1 {
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.contador-registros {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.busca-listagem {
+  max-width: 420px;
+  margin: 0;
+}
+
+.busca-listagem input {
+  height: 36px;
+  border-radius: 8px;
+}
+
+.acoes-cabecalho-listagem {
+  gap: 8px;
+}
+
+.acoes-cabecalho-listagem .botao-principal {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+}
+
+.botao-ativar-selecao {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+}
+
+.opcao-selecionar-todos {
+  height: 36px;
+}
+
+.filtros-ativos {
+  margin: 0 0 10px;
+}
+
+/* ---------- Tabela ocupa o resto e rola por dentro ---------- */
+
+.tabela-usuarios-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+}
+
+/* "separate" deixa o cabeçalho fixo (sticky) colado no topo */
+.tabela-usuarios {
+  margin: 0 !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+}
+
+/* Cabeçalho fixo no topo ao rolar */
+.tabela-usuarios thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  background-color: var(--bg-secondary);
+  border-bottom: none;
+  box-shadow: inset 0 -1px 0 var(--border);
+}
+
+.tabela-usuarios tbody td {
+  padding: 3.2px 12px;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Linhas zebradas e hover (sem atrapalhar a seleção em massa) */
+.tabela-usuarios tbody tr:nth-child(even):not(.linha-selecionada) td {
+  background-color: color-mix(in srgb, var(--text) 3%, transparent);
+}
+
+.tabela-usuarios tbody tr:hover:not(.linha-selecionada) td {
+  background-color: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+/* ---------- Ações fixas do cabeçalho ---------- */
+
+.acoes-cabecalho-listagem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.grupo-selecao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.acoes-fixas-cabecalho {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.acoes-fixas-cabecalho .coluna-filtro-controles {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.acoes-fixas-cabecalho .coluna-filtro-controles .botao-filtro,
+.acoes-fixas-cabecalho .coluna-filtro-controles .filtro-coluna-botao {
+  width: 36px;
+  height: 36px;
+  margin-left: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0;
+  transition:
+    transform 0.15s ease-in-out,
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.acoes-fixas-cabecalho .coluna-filtro-controles .botao-filtro:hover,
+.acoes-fixas-cabecalho .coluna-filtro-controles .filtro-coluna-botao:hover,
+.acoes-fixas-cabecalho .coluna-filtro-controles .botao-filtro.ativo,
+.acoes-fixas-cabecalho .coluna-filtro-controles .filtro-coluna-botao.ativo {
+  transform: scale(1.08);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  background-color: var(--field-support);
+  color: var(--accent);
+}
+
+.botao-exportar,
+.botao-excluir-massa,
+.acoes-fixas-cabecalho .botao-principal {
+  height: 36px;
+  border-radius: 8px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.botao-exportar {
+  border: 1px solid var(--border);
+  background: var(--input-bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.botao-exportar:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.botao-exportar svg {
+  width: 16px;
+  height: 16px;
+}
+
+.botao-excluir-massa {
+  border: none;
+}
+
+.botao-excluir-massa:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background-color: color-mix(in srgb, var(--accent) 60%, #ffffff);
+}
+
+/* ---------- Modal de exportação ---------- */
+
+.modal-exportacao-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal-exportacao {
+  width: min(420px, 100%);
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  padding: 18px;
+  animation: aparecerModal 0.2s ease-out;
+}
+
+.modal-exportacao-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.modal-exportacao-cabecalho h2 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text);
+}
+
+.modal-exportacao-fechar {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modal-exportacao-fechar:hover {
+  background-color: var(--field-support);
+}
+
+.modal-exportacao-texto {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.modal-exportacao-erro {
+  margin: 10px 0 0;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fde8e9;
+  color: #ed1c26;
+  font-size: 13px;
+}
+
+.modal-exportacao-opcoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.modal-exportacao-opcao {
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--input-bg);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-exportacao-opcao:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.modal-exportacao-opcao svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 900px) {
+  .acoes-cabecalho-listagem {
+    flex-wrap: wrap;
+  }
+
+  .acoes-fixas-cabecalho {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .acoes-fixas-cabecalho {
+    justify-content: stretch;
+  }
+
+  .botao-exportar,
+  .botao-excluir-massa,
+  .acoes-fixas-cabecalho .botao-principal {
+    flex: 1 1 calc(50% - 4px);
+    justify-content: center;
+  }
+
+  .acoes-fixas-cabecalho .coluna-filtro-controles {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .modal-exportacao-opcoes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Foto menor e redonda ---------- */
+
+.coluna-foto {
+  width: 60px;
+  min-width: 60px;
+}
+
+.foto-usuario-tabela {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+}
+
+.foto-usuario-tabela-botao {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.tabela-usuarios .coluna-filtro,
+.tabela-usuarios .tabela-acoes {
+  padding-right: 12px;
+}
+
+.sentinela-tabela {
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+/* ---------- Celular: página volta a rolar normalmente ---------- */
+@media (max-width: 700px) {
+  .cadastro-usuarios-content {
+    height: auto;
+    min-height: 100vh;
+    padding: 88px 8px 12px;
+  }
+
+  .tabela-usuarios-wrapper {
+    max-height: calc(100vh - 220px);
+  }
+}
+
+/* ---------- Ajustes finais da barra de ações (listagem) ---------- */
+
+.contador-registros {
+  font-size: 13px;
+}
+
+.busca-listagem {
+  max-width: 360px;
+}
+
+.busca-listagem input {
+  height: 42px;
+  border-radius: 21px;
+}
+
+.acoes-cabecalho-listagem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.acoes-cabecalho-listagem .botao-principal {
+  margin-left: 0;
+}
+
+.acoes-cabecalho-listagem .coluna-filtro-controles {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.acoes-cabecalho-listagem .coluna-filtro-controles .botao-filtro,
+.acoes-cabecalho-listagem .coluna-filtro-controles .filtro-coluna-botao {
+  width: 36px;
+  height: 36px;
+  margin-left: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0;
+  transition:
+    transform 0.15s ease-in-out,
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.acoes-cabecalho-listagem .coluna-filtro-controles .botao-filtro:hover,
+.acoes-cabecalho-listagem .coluna-filtro-controles .filtro-coluna-botao:hover,
+.acoes-cabecalho-listagem .coluna-filtro-controles .botao-filtro.ativo,
+.acoes-cabecalho-listagem .coluna-filtro-controles .filtro-coluna-botao.ativo {
+  transform: scale(1.08);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  background-color: var(--field-support);
+  color: var(--accent);
+}
+
+/* ============================================================
+   ITEM 5 – "CANCELAR" DO MODAL DE CADASTRAR/EDITAR COMO BOTÃO
+   ============================================================ */
+
+.modal-formulario .botao-cancelar {
+  border: 1px solid var(--accent);
+  background-color: transparent;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.modal-formulario .botao-cancelar:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
+}
+
+/* ============================================================
+   ITEM 6 – BOTÃO EXPORTAR DESATIVADO (lista vazia)
+   ============================================================ */
+
+.botao-exportar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   ITEM 7a – BOTÃO DE SELECIONAR VÁRIOS IGUAL AOS OUTROS
+   (cinza/branco parado, vermelho no hover ou com a seleção ligada)
+   ============================================================ */
+
+.acoes-cabecalho-listagem .botao-ativar-selecao {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  transition:
+    transform 0.15s ease-in-out,
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.acoes-cabecalho-listagem .botao-ativar-selecao .icone-botao-selecao {
+  width: 18px;
+  height: 18px;
+  color: inherit;
+}
+
+.acoes-cabecalho-listagem .botao-ativar-selecao:hover,
+.acoes-cabecalho-listagem .botao-ativar-selecao.selecao-ativa {
+  transform: scale(1.08);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  background-color: var(--field-support);
+  color: var(--accent);
+}
+
+/* ============================================================
+   ITEM 7b – LISTA DO MODAL DE FILTRO SEM ROLAGEM HORIZONTAL
+   ============================================================ */
+
+.modal-filtro-lista {
+  overflow-x: hidden;
+}
+
+.modal-filtro-opcao,
+.modal-filtro-categoria {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   FILTROS ATIVOS EM UMA LINHA, COM SCROLL HORIZONTAL
+   (no final do arquivo de propósito)
+   ============================================================ */
+
+.painel-listagem .filtros-ativos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex-shrink: 0;
+  margin: 0 0 10px;
+}
+
+.painel-listagem .filtros-ativos-titulo,
+.painel-listagem .limpar-filtros {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.painel-listagem .filtros-ativos-lista {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+.painel-listagem .filtros-ativos-lista::-webkit-scrollbar {
+  height: 6px;
+}
+
+.painel-listagem .filtros-ativos-lista::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 3px;
+}
+
+.painel-listagem .filtros-ativos-lista .chip-filtro {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   MODAL EDITAR – STATUS AO LADO DO PERFIL
+   (tamanho original dos campos)
+   ============================================================ */
+
+/* Status vira um campo normal, na coluna ao lado do Perfil */
+.formulario-usuario .campo-status {
+  grid-column: auto;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0;
+}
+
+/* Botões Ativo/Inativo com a mesma altura do select (44px) */
+.formulario-usuario .grupo-status {
+  gap: 10px;
+}
+
+.formulario-usuario .botao-status {
+  flex: 1;
+  justify-content: center;
+  height: 40px;
+  padding: 0 14px;
+}
+/* ============================================================
+   BOTÕES CANCELAR / FECHAR DOS MODAIS SEM CONTORNO DE FOCO
+   (o foco continua neles: Enter = cancelar)
+   ============================================================ */
+
+.modal-botao-cancelar:focus,
+.modal-botao-cancelar:focus-visible,
+.modal-formulario .botao-cancelar:focus,
+.modal-formulario .botao-cancelar:focus-visible,
+.modal-exportacao-fechar:focus,
+.modal-exportacao-fechar:focus-visible,
+.perfil-foto-fullscreen-fechar:focus,
+.perfil-foto-fullscreen-fechar:focus-visible {
+  outline: none;
+}
+
+/* Tela cheia da LISTAGEM (vem logo depois da tabela).
+   Foto ainda não fixada: cursor de mãozinha, dá para clicar */
+.tabela-usuarios-wrapper ~ .perfil-foto-fullscreen .perfil-foto-fullscreen-imagem,
+.tabela-usuarios-wrapper ~ .perfil-foto-fullscreen .perfil-foto-fullscreen-placeholder {
+  cursor: pointer;
+}
+
+/* Foto fixada pelo clique: anel na cor do tema */
+.tabela-usuarios-wrapper ~ .perfil-foto-fullscreen .fixada {
+  cursor: default;
+  box-shadow:
+    0 0 0 3px var(--accent),
+    0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-offline-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.modal-offline {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 24px 24px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: var(--bg-primary);
+  color: #252525;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.modal-offline-fechar {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.modal-offline-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #e6f6e9;
+  color: #218838;
+  font-size: 30px;
+}
+
+.modal-offline h2 {
+  margin: 0 0 12px;
+  font-size: 22px;
+}
+
+.modal-offline p {
+  margin: 0 0 24px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.modal-offline-botao {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #ed1c26;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-offline-botao:hover {
+  background: #c9161e;
+}

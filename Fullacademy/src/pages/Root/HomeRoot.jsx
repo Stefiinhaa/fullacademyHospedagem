@@ -21,7 +21,7 @@ function HomeRoot() {
 
       <main className="home-content">
         <h1>Home Root</h1>
-        <p>Acesso completo ao sistema</p>
+        <p>Acesso completo ao sistemaaaaaa</p>
       </main>
     </div>
   );

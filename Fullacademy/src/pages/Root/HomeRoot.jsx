@@ -20,7 +20,7 @@ function HomeRoot() {
       <Navbar profile="root" onToggleSidebar={handleToggleSidebar} />
 
       <main className="home-content">
-        <h1>Home Root</h1>
+        <h1>Home Root stefani</h1>
         <p>Acesso completo ao sistema stefani santos</p>
       </main>
     </div>

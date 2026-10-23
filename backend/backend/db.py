@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_connection():
-    host = os.getenv("DB_HOST", "localhost")
+    # O endereço do servidor MySQL do Alwaysdata vai aqui no host:
+    host = os.getenv("DB_HOST", "mysql-fullacademy.alwaysdata.net")
     port = int(os.getenv("DB_PORT", 3306))
     connect_timeout = int(os.getenv("DB_CONNECT_TIMEOUT", 5))
     read_timeout = int(os.getenv("DB_READ_TIMEOUT", 30))
@@ -15,9 +16,10 @@ def get_connection():
     try:
         return pymysql.connect(
             host=host,
-            user=os.getenv("DB_USER", "root"),
-            password=os.getenv("DB_PASSWORD", ""),
-            database=os.getenv("DB_NAME"),
+            # O nome do usuário MySQL criado no painel vai aqui:
+            user=os.getenv("DB_USER", "fullacademy_user"),
+            password=os.getenv("DB_PASSWORD", "Fullacademy2026"),
+            database=os.getenv("DB_NAME", "fullacademy_2026"),
             port=port,
             cursorclass=DictCursor,
             autocommit=True,

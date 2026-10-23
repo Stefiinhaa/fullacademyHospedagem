@@ -5,7 +5,6 @@ import datetime
 import jwt
 import re
 import uuid
-import subprocess
 from functools import wraps
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
@@ -22,16 +21,6 @@ load_dotenv()
 # Inicialização do Flask
 app = Flask(__name__, static_folder='frontend_build', static_url_path='')
 CORS(app)  # Habilita CORS para o frontend React
-
-# Rota de Webhook posicionada corretamente após a criação de 'app'
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    if request.method == 'POST':
-        # Executa o script de deploy em segundo plano ou direto
-        subprocess.run(['bash', '/home/fullacademy/fullacademyHospedagem/backend/backend/deploy.sh'])
-        return 'Atualizado com sucesso!', 200
-    return 'Método não permitido', 405
-
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

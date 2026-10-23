@@ -143,7 +143,7 @@ function Login() {
         <div className="login__text">
           <h1 className="login__text_title">Acesse sua conta</h1>
           <div className="login__text_sub">
-            <p>Portal de Gestão de Aprendizagem Stefani </p>
+            <p>Portal de Gestão de Aprendizagem</p>
           </div>
         </div>
 

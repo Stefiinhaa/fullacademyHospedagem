@@ -21,7 +21,7 @@ function HomeRoot() {
 
       <main className="home-content">
         <h1>Home Root stefani</h1>
-        <p>Acesso completo ao sistema stefani santos</p>
+        <p>Acesso completo ao sistema stefani santos !!!</p>
       </main>
     </div>
   );

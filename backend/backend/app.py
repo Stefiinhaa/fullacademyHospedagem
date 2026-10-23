@@ -5,8 +5,9 @@ import datetime
 import jwt
 import re
 import uuid
+import subprocess
+from functools import wraps
 from flask import Flask, request, jsonify, send_from_directory
-from flask import Flask, send_from_directory
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.exceptions import HTTPException
@@ -16,13 +17,13 @@ from dotenv import load_dotenv
 from db import get_connection
 from email_utils import enviar_email
 
-from functools import wraps
-
 load_dotenv()
 
-import subprocess
-from flask import request
+# Inicialização do Flask
+app = Flask(__name__, static_folder='frontend_build', static_url_path='')
+CORS(app)  # Habilita CORS para o frontend React
 
+# Rota de Webhook posicionada corretamente após a criação de 'app'
 @app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
@@ -30,9 +31,6 @@ def webhook():
         subprocess.run(['bash', '/home/fullacademy/fullacademyHospedagem/backend/backend/deploy.sh'])
         return 'Atualizado com sucesso!', 200
     return 'Método não permitido', 405
-
-app = Flask(__name__, static_folder='frontend_build', static_url_path='')
-CORS(app)  # Habilita CORS para o frontend React
 
 
 @app.route('/', defaults={'path': ''})
@@ -891,6 +889,10 @@ def erro_inesperado(erro):
     return jsonify(resposta), 500
 
 
+# Variável obrigatória exigida pelo uWSGI do Alwaysdata
+application = app
+
+
 if __name__ == "__main__":
     if os.environ.get("WERKZEUG_RUN_MAIN") != "true":
         print("Preparando o banco de dados...")
@@ -901,7 +903,6 @@ if __name__ == "__main__":
             print(f"Aviso: falha na preparação do banco em startup: {erro}")
         print("Banco pronto. Iniciando o servidor...")
 
-    # Mostra as rotas registradas, para conferir no terminal
     print(app.url_map)
 
     app.run(debug=True, port=5000, host='0.0.0.0', threaded=True)

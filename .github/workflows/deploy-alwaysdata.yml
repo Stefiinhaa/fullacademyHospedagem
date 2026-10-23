@@ -1,0 +1,34 @@
+
+name: Deploy Full Academy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Atualizar aplicação no Alwaysdata
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          API_KEY: ${{ secrets.ALWAYSDATA_API_KEY }}
+          SITE_ID: ${{ secrets.ALWAYSDATA_SITE_ID }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          ssh-keyscan -H ssh-fullacademy.alwaysdata.net >> ~/.ssh/known_hosts
+
+          ssh -i ~/.ssh/id_ed25519 \
+            -o IdentitiesOnly=yes \
+            fullacademy@ssh-fullacademy.alwaysdata.net \
+            'bash ~/fullacademyHospedagem/backend/backend/deploy.sh'
+
+          curl --fail --silent --show-error \
+            --request POST \
+            --user "$API_KEY account=fullacademy:" \
+            "https://api.alwaysdata.com/v1/site/$SITE_ID/restart/"

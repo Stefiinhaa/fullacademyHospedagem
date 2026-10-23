@@ -41,6 +41,11 @@ export default defineConfig({
     }),
   ],
 
+  build: {
+    outDir: '../backend/backend/frontend_build',
+    emptyOutDir: true,
+  },
+
   server: {
     proxy: {
       '/api': {
